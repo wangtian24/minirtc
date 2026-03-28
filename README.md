@@ -73,9 +73,50 @@ minirtc/
 │   ├── index.html     # Single-page UI (landing + room views)
 │   ├── app.js         # WebRTC + signaling logic
 │   └── style.css      # Styling
+├── deploy.sh          # One-command Cloud Run deployment
+├── Dockerfile         # Container image definition
 ├── DESIGN.md          # Detailed design document
 └── requirements.txt   # Python dependencies
 ```
+
+## Deploy to Google Cloud Run
+
+One command to get a public URL with HTTPS and WebSocket support.
+
+### Prerequisites
+
+1. Install the [gcloud CLI](https://cloud.google.com/sdk/docs/install)
+2. Create a GCP service account key:
+   - Go to [IAM → Service Accounts](https://console.cloud.google.com/iam-admin/serviceaccounts)
+   - Select or create a service account
+   - Grant these roles:
+     - **Cloud Run Admin**
+     - **Cloud Build Editor**
+     - **Service Account User**
+     - **Storage Admin**
+   - Go to **Keys** tab → **Add Key** → **Create new key** → **JSON**
+   - Save the downloaded `.json` file
+
+### Deploy
+
+```bash
+./deploy.sh /path/to/your-service-account-key.json
+```
+
+Or using an environment variable:
+
+```bash
+export GOOGLE_APPLICATION_CREDENTIALS=/path/to/key.json
+./deploy.sh
+```
+
+Optionally set the region (default: `us-central1`):
+
+```bash
+CLOUD_RUN_REGION=asia-east1 ./deploy.sh key.json
+```
+
+The script will build, deploy, and print your public URL.
 
 ## Design Decisions
 

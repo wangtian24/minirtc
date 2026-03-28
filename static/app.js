@@ -1,4 +1,5 @@
-const WS_URL = `ws://${location.hostname || "localhost"}:8765/ws`;
+const WS_PROTO = location.protocol === "https:" ? "wss:" : "ws:";
+const WS_URL = `${WS_PROTO}//${location.host}/ws`;
 
 const RTC_CONFIG = {
   iceServers: [
