@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>MiniRTC</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <!-- Landing: no room ID in hash -->
+  <div id="landing">
+    <h1>MiniRTC</h1>
+    <p>Simple 1:1 audio/video calls</p>
+    <button id="create-room-btn">Create Room</button>
+  </div>
+
+  <!-- Room: active call UI -->
+  <div id="room" hidden>
+    <div id="status-bar">
+      <span id="status">Connecting...</span>
+      <button id="copy-link-btn" title="Copy room link">Copy Link</button>
+    </div>
+
+    <div id="videos">
+      <video id="remote-video" autoplay playsinline></video>
+      <video id="local-video" autoplay playsinline muted></video>
+    </div>
+
+    <div id="controls" hidden>
+      <button id="mute-btn">Mute</button>
+      <button id="camera-btn">Camera Off</button>
+      <button id="leave-btn">Leave</button>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
